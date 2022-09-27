@@ -38,7 +38,7 @@ public class NewsApi {
     }
 
     @GetMapping("/get-all")
-    public ResponseEntity<Page<News>> getAllNews(Pageable pageable, NewsDTO newsDTO) {
+    public ResponseEntity<Page<News>> getAllNews(Pageable pageable, @RequestBody NewsDTO newsDTO) {
         return new ResponseEntity<>(newsService.getAllNews(pageable,newsDTO),HttpStatus.OK);
     }
 

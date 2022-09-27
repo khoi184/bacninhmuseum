@@ -8,7 +8,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.thuanthanhtech.mymuseummanagement.auth.CustomUserDetails;
 import org.thuanthanhtech.mymuseummanagement.dto.SignUpDto;
-import org.thuanthanhtech.mymuseummanagement.entity.Role;
 import org.thuanthanhtech.mymuseummanagement.entity.User;
 import org.thuanthanhtech.mymuseummanagement.repository.UserRepository;
 
