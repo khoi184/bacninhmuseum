@@ -1,10 +1,10 @@
-package org.thuanthanhtech.bacninhmuseum;
+package org.thuanthanhtech.mymuseummanagement;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BacninhmuseumApplicationTests {
+class MyMuseumManagementApplicationTests {
 
     @Test
     void contextLoads() {
