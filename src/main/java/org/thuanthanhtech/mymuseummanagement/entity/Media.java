@@ -21,10 +21,14 @@ public class Media extends BaseTimeModel{
 
 //    private  Long albumId;
 
-    private  Long videoId;
+//    private  Long videoId;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "album_id", nullable = false)
     private Album album;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "video_id", nullable = false)
+    private Videos video;
 
 }

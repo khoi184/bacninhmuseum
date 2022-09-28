@@ -35,6 +35,14 @@ public class VideosServiceImpl implements VideosService {
             videos.setSlug(video.getSlug());
             videos.setStatus(Constants.STATUS_ACTIVE);
             videosRepository.save(videos);
+
+            List<Media> mediaList = new ArrayList<>();
+            for (Media mediaVideo : video.getMediaVideo()) {
+                mediaVideo.setVideo(videos);
+                mediaVideo.setType(Constants.MEDIA_VIDEOS);
+                mediaList.add(mediaVideo);
+            }
+            mediaRepository.saveAll(mediaList);
         } else {
             throw new Exception("Name existed");
         }
@@ -55,6 +63,14 @@ public class VideosServiceImpl implements VideosService {
                 videos.setSlug(video.getSlug());
                 videos.setStatus(Constants.STATUS_ACTIVE);
                 videosRepository.save(videos);
+
+                List<Media> mediaList = new ArrayList<>();
+                for (Media mediaVideo : video.getMediaVideo()) {
+                    mediaVideo.setVideo(videos);
+                    mediaVideo.setType(Constants.MEDIA_VIDEOS);
+                    mediaList.add(mediaVideo);
+                }
+                mediaRepository.saveAll(mediaList);
             } else {
                 throw new Exception("Name existed!");
             }
