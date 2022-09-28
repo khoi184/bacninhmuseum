@@ -17,17 +17,17 @@ public class MediaApi {
 
     private final MediaService mediaService;
 
-    @PostMapping("/create")
-    public ResponseEntity<?> createMedia(@RequestBody Media media) {
-        mediaService.createMedia(media);
-        return new ResponseEntity<>(media, HttpStatus.OK);
-    }
-
-    @PutMapping("/update/{id}")
-    public ResponseEntity<?> updateMedia(@RequestBody Media media, @PathVariable("id") Long id) {
-        mediaService.updateMedia(media, id);
-        return new ResponseEntity<>("Update successfully!", HttpStatus.OK);
-    }
+//    @PostMapping("/create")
+//    public ResponseEntity<?> createMedia(@RequestBody Media media) {
+//        mediaService.createMedia(media);
+//        return new ResponseEntity<>(media, HttpStatus.OK);
+//    }
+//
+//    @PutMapping("/update/{id}")
+//    public ResponseEntity<?> updateMedia(@RequestBody Media media, @PathVariable("id") Long id) {
+//        mediaService.updateMedia(media, id);
+//        return new ResponseEntity<>("Update successfully!", HttpStatus.OK);
+//    }
 
     @PutMapping("/delete/{id}")
     public ResponseEntity<?> deleteMedia(@PathVariable("id") Long id) {
@@ -38,5 +38,10 @@ public class MediaApi {
     @GetMapping("get-all-videos")
     public ResponseEntity<List<Media>> getAllMedia() {
         return new ResponseEntity<>(mediaService.getAllMedia(), HttpStatus.OK);
+    }
+
+    @GetMapping("/get-all-media")
+    public ResponseEntity<List<Media>> getAllMediaByAlbumId(@RequestParam("id") Long id) {
+        return new ResponseEntity<>(mediaService.getAllMediaByAlbumId(id), HttpStatus.OK);
     }
 }

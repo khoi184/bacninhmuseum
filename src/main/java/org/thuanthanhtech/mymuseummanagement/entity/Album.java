@@ -1,16 +1,13 @@
 package org.thuanthanhtech.mymuseummanagement.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.apache.bval.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name="album")
@@ -25,4 +22,7 @@ public class Album extends BaseTimeModel{
 
     @Column(name = "slug")
     private String slug;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = ("id"))
+    private List<Media> mediaImage;
 }

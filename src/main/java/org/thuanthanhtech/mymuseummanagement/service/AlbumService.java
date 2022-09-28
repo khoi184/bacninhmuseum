@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.thuanthanhtech.mymuseummanagement.dto.AlbumDTO;
 import org.thuanthanhtech.mymuseummanagement.entity.Album;
+import org.thuanthanhtech.mymuseummanagement.entity.Media;
 
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -20,4 +22,8 @@ public interface AlbumService {
     Map<String, Object> deleteAlbum(Long id);
 
     Page<Album> getAllAlbum(Pageable pageable, AlbumDTO albumDTO);
+
+//    List<Album> getAllMediaByAlbum();
+
+
 }

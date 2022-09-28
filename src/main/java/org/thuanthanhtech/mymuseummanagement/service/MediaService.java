@@ -8,13 +8,15 @@ import java.util.List;
 
 public interface MediaService {
 
-    @Transactional
-    Media createMedia(Media media);
-
-    @Transactional
-    Media updateMedia(Media media, Long id)  ;
+//    @Transactional
+//    Media createMedia(Media media);
+//
+//    @Transactional
+//    Media updateMedia(Media media, Long id)  ;
 
     void deleteMedia( Long id) ;
 
     List<Media> getAllMedia();
+
+    List<Media> getAllMediaByAlbumId(Long id);
 }
