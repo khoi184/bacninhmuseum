@@ -23,37 +23,6 @@ public class MediaServiceImpl implements MediaService {
 
     private final MediaRepository mediaRepository;
 
-//    @SneakyThrows
-//    @Override
-//    @Transactional
-//    public Media createMedia(Media media)  {
-//        Media medias = new Media();
-//        medias.setLink(media.getLink());
-//        medias.setObjectType(media.getObjectType());
-//        medias.setType(media.getType());
-//        medias.setStatus(Constants.STATUS_ACTIVE);
-//        mediaRepository.save(media);
-//        return media;
-//    }
-
-//    @SneakyThrows
-//    @Override
-//    @Transactional
-//    public Media updateMedia(Media media, Long id) {
-//        Optional<Media> medias = mediaRepository.findById(id);
-//        if (medias.isPresent()) {
-//            Media med = medias.get();
-//
-//            med.setLink(media.getLink());
-//            med.setObjectType(media.getObjectType());
-//            med.setType(media.getType());
-//            med.setStatus(Constants.STATUS_ACTIVE);
-//            mediaRepository.save(med);
-//        } else {
-//            throw new MessageDescriptorFormatException("Can not found by id: " + id);
-//        }
-//        return media;
-//    }
     @SneakyThrows
     @Override
     public void deleteMedia(Long id) {

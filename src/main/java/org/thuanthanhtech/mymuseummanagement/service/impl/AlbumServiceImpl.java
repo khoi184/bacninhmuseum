@@ -40,12 +40,12 @@ public class AlbumServiceImpl implements AlbumService {
             albums.setStatus(Constants.STATUS_ACTIVE);
             albumRepository.save(albums);
 
-            List<Media> mediaList = new ArrayList<>();
-            for (Media mediaImage : album.getMediaImage()) {
-                mediaImage.setAlbum(albums);
-                mediaList.add(mediaImage);
-            }
-            mediaRepository.saveAll(mediaList);
+//            List<Media> mediaList = new ArrayList<>();
+//            for (Media mediaImage : album.getMediaImage()) {
+//                mediaImage.setAlbum(albums);
+//                mediaList.add(mediaImage);
+//            }
+//            mediaRepository.saveAll(mediaList);
         } else {
             throw new Exception("Name existed!");
         }
@@ -113,8 +113,4 @@ public class AlbumServiceImpl implements AlbumService {
         return albumRepository.findBySearch(pageable, search);
     }
 
-//    @Override
-//    public List<Album> getAllMediaByAlbum() {
-//        return albumRepository.getAllMediaByAlbum();
-//    }
 }

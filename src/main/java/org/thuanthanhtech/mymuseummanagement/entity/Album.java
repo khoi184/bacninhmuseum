@@ -23,6 +23,6 @@ public class Album extends BaseTimeModel{
     @Column(name = "slug")
     private String slug;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = ("id"))
-    private List<Media> mediaImage;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = ("id"))
+//    private List<Media> mediaImage;
 }
