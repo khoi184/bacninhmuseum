@@ -30,15 +30,14 @@ public class SyntheticServiceImpl implements SyntheticService {
     @Override
     @Transactional
     public Synthetic createSynthetic(Synthetic synthetic) {
-        Synthetic synthetics = new Synthetic();
 
-        synthetics.setType(synthetic.getType());
-        synthetics.setName(synthetic.getName());
-        synthetics.setTitle(synthetic.getTitle());
-        synthetics.setContent(synthetic.getContent());
-        synthetics.setUpdateBy(synthetic.getUpdateBy());
-        synthetics.setStatus(Constants.STATUS_ACTIVE);
-        syntheticRepository.save(synthetics);
+        synthetic.setType(synthetic.getType());
+        synthetic.setName(synthetic.getName());
+        synthetic.setTitle(synthetic.getTitle());
+        synthetic.setContent(synthetic.getContent());
+        synthetic.setUpdateBy(synthetic.getUpdateBy());
+        synthetic.setStatus(Constants.STATUS_ACTIVE);
+        syntheticRepository.save(synthetic);
 
         return synthetic;
     }

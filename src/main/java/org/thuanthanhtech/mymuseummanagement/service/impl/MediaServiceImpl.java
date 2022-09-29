@@ -34,11 +34,6 @@ public class MediaServiceImpl implements MediaService {
     }
 
     @Override
-    public List<Media> getAllMediaByAlbumId(Long id) {
-        return mediaRepository.getAllMediaByAlbumId(id);
-    }
-
-    @Override
     public List<Media> getAllMedia() {
         return mediaRepository.findAll();
     }

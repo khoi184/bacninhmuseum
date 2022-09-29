@@ -8,9 +8,6 @@ public class Constants {
     public static final Integer PUBLISH_ACTIVE = 1;
     public static final Integer PUBLISH_INACTIVE = 0;
 
-    public static final Integer MEDIA_ALBUM_IMAGE = 0;
-    public static final Integer MEDIA_VIDEOS = 1;
-
     public static final Integer TYPE_FEATURED_NEWS = 0;
     public static final Integer TYPE_UPCOMING_EVENTS = 1;
     public static final Integer TYPE_SHOW_REGULARLY = 2;

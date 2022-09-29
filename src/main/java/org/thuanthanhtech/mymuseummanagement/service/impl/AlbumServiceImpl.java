@@ -33,17 +33,18 @@ public class AlbumServiceImpl implements AlbumService {
     @Transactional
     public Album createAlbum(Album album) {
         Optional<Album> optional = albumRepository.findByName(album.getName());
-        Album albums = new Album();
         if (optional.isEmpty()) {
-            albums.setName(album.getName());
-            albums.setSlug(album.getSlug());
-            albums.setStatus(Constants.STATUS_ACTIVE);
-            albumRepository.save(albums);
+            album.setName(album.getName());
+            album.setSlug(album.getSlug());
+            album.setCreatDate(new Date());
+            album.setUpdateBy(album.getUpdateBy());
+            album.setStatus(Constants.STATUS_ACTIVE);
+            albumRepository.save(album);
 
             List<Media> mediaList = new ArrayList<>();
             for (Media mediaImage : album.getMediaImage()) {
-                mediaImage.setAlbum(albums);
-                mediaImage.setType(Constants.MEDIA_ALBUM_IMAGE);
+                mediaImage.setAlbum(album);
+                mediaImage.setStatus(Constants.STATUS_ACTIVE);
                 mediaList.add(mediaImage);
             }
             mediaRepository.saveAll(mediaList);
@@ -64,13 +65,15 @@ public class AlbumServiceImpl implements AlbumService {
             if (optionalAlbum.isEmpty() || albums.getId().equals(optionalAlbum.get().getId())) {
                 albums.setName(album.getName());
                 albums.setSlug(album.getSlug());
+                albums.setModifiedDate(new Date());
+                albums.setUpdateBy(album.getUpdateBy());
                 albums.setStatus(Constants.STATUS_ACTIVE);
                 albumRepository.save(albums);
 
                 List<Media> mediaList = new ArrayList<>();
                 for (Media mediaImage : album.getMediaImage()) {
+                    mediaImage.setStatus(Constants.STATUS_ACTIVE);
                     mediaImage.setAlbum(albums);
-                    mediaImage.setType(Constants.MEDIA_ALBUM_IMAGE);
                     mediaList.add(mediaImage);
                 }
                 mediaRepository.saveAll(mediaList);
@@ -92,7 +95,7 @@ public class AlbumServiceImpl implements AlbumService {
         }
         for (Album album : albumList) {
             album.setStatus(Constants.STATUS_INACTIVE);
-            album.setCreatDate(new Date());
+            album.setModifiedDate(new Date());
             albumRepository.save(album);
         }
 
@@ -102,7 +105,7 @@ public class AlbumServiceImpl implements AlbumService {
         }
         for (Media media: mediaList) {
             media.setStatus(Constants.STATUS_INACTIVE);
-            media.setCreatDate(new Date());
+            media.setModifiedDate(new Date());
             mediaRepository.save(media);
         }
 
@@ -123,7 +126,7 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
-    public List<Album> getAllMediaByAlbumId(Long id) {
-        return albumRepository.findByAlbumId(id);
+    public List<Album> getAllAlbumByMedia(Long id) {
+        return albumRepository.getAllMediaByAlbumId(id);
     }
 }

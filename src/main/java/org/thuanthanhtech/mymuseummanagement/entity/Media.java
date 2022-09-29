@@ -1,5 +1,6 @@
 package org.thuanthanhtech.mymuseummanagement.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -13,22 +14,11 @@ public class Media extends BaseTimeModel{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String objectType;
+    private String imageAlbum;
 
-    private String link;
-
-    private Integer type;
-
-//    private  Long albumId;
-
-//    private  Long videoId;
-
+    @JsonBackReference
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "album_id", nullable = false)
     private Album album;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "video_id", nullable = false)
-    private Videos video;
 
 }

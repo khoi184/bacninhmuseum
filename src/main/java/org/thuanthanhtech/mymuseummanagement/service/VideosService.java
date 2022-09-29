@@ -13,7 +13,7 @@ public interface VideosService {
 
     Videos updateVideo(Videos video, Long id);
 
-    Map<String, Object> deleteVideo(Long id);
+    void deleteVideo(Long id);
 
     List<Videos> getAllVideos();
 }

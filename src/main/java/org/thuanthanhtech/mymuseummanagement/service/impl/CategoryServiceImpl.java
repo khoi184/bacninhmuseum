@@ -5,7 +5,6 @@ import lombok.SneakyThrows;
 import org.hibernate.validator.internal.engine.messageinterpolation.parser.MessageDescriptorFormatException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import org.thuanthanhtech.mymuseummanagement.dto.CategoryDTO;
 import org.thuanthanhtech.mymuseummanagement.entity.Category;
 import org.thuanthanhtech.mymuseummanagement.entity.CategoryDetail;
 import org.thuanthanhtech.mymuseummanagement.repository.CategoryDetailRepository;

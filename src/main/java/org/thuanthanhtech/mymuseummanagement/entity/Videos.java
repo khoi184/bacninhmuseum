@@ -4,7 +4,6 @@ package org.thuanthanhtech.mymuseummanagement.entity;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Data
@@ -18,7 +17,11 @@ public class Videos extends  BaseTimeModel{
 
     private String slug;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
-    private List<Media> mediaVideo;
+    private String code;
+
+    private String image;
+
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id")
+//    private List<Media> mediaVideo;
 
 }

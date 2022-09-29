@@ -4,9 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import org.thuanthanhtech.mymuseummanagement.entity.Media;
 import org.thuanthanhtech.mymuseummanagement.entity.Videos;
-import org.thuanthanhtech.mymuseummanagement.repository.MediaRepository;
 import org.thuanthanhtech.mymuseummanagement.repository.VideosRepository;
 import org.thuanthanhtech.mymuseummanagement.service.VideosService;
 import org.thuanthanhtech.mymuseummanagement.utils.Constants;
@@ -20,29 +18,20 @@ public class VideosServiceImpl implements VideosService {
 
     private final VideosRepository videosRepository;
 
-    public static final String  VIDEO_MEDIA = "Video";
-
-    private final MediaRepository mediaRepository;
-
     @SneakyThrows
     @Transactional
     @Override
     public Videos createVideo(Videos video) {
         Optional<Videos> optionalVideos = videosRepository.findByName(video.getName());
-        Videos videos = new Videos();
-        if (optionalVideos.isEmpty()) {
-            videos.setName(video.getName());
-            videos.setSlug(video.getSlug());
-            videos.setStatus(Constants.STATUS_ACTIVE);
-            videosRepository.save(videos);
 
-            List<Media> mediaList = new ArrayList<>();
-            for (Media mediaVideo : video.getMediaVideo()) {
-                mediaVideo.setVideo(videos);
-                mediaVideo.setType(Constants.MEDIA_VIDEOS);
-                mediaList.add(mediaVideo);
-            }
-            mediaRepository.saveAll(mediaList);
+        if (optionalVideos.isEmpty()) {
+            video.setName(video.getName());
+            video.setSlug(video.getSlug());
+            video.setCode(video.getCode());
+            video.setImage(video.getImage());
+            video.setStatus(Constants.STATUS_ACTIVE);
+            videosRepository.save(video);
+
         } else {
             throw new Exception("Name existed");
         }
@@ -61,16 +50,11 @@ public class VideosServiceImpl implements VideosService {
             if (optional.isEmpty() || videos.getId().equals(optional.get().getId())) {
                 videos.setName(video.getName());
                 videos.setSlug(video.getSlug());
+                videos.setCode(video.getCode());
+                videos.setImage(video.getImage());
                 videos.setStatus(Constants.STATUS_ACTIVE);
                 videosRepository.save(videos);
 
-                List<Media> mediaList = new ArrayList<>();
-                for (Media mediaVideo : video.getMediaVideo()) {
-                    mediaVideo.setVideo(videos);
-                    mediaVideo.setType(Constants.MEDIA_VIDEOS);
-                    mediaList.add(mediaVideo);
-                }
-                mediaRepository.saveAll(mediaList);
             } else {
                 throw new Exception("Name existed!");
             }
@@ -82,7 +66,7 @@ public class VideosServiceImpl implements VideosService {
 
     @SneakyThrows
     @Override
-    public Map<String, Object> deleteVideo(Long id) {
+    public void deleteVideo(Long id) {
         List<Videos> videosList = videosRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
         if (CollectionUtils.isEmpty(videosList)) {
             throw new Exception("Video not exsits");
@@ -92,23 +76,11 @@ public class VideosServiceImpl implements VideosService {
             video.setCreatDate(new Date());
             videosRepository.save(video);
         }
-        List<Media> mediaList = mediaRepository.findByVideoIdAndStatus();
-        if (CollectionUtils.isEmpty(mediaList)) {
-            throw new Exception("media not exists");
-        }
-        for (Media media : mediaList) {
-            media.setStatus(Constants.STATUS_INACTIVE);
-            mediaRepository.save(media);
-        }
-
-        Map<String, Object> result = new HashMap<>();
-        result.put(VIDEO_MEDIA, videosList);
-        return result;
     }
 
     @Override
     public List<Videos> getAllVideos() {
-        return videosRepository.findAll();
+        return videosRepository.getAllVideosByMedia();
     }
 
 

@@ -1,9 +1,7 @@
 package org.thuanthanhtech.mymuseummanagement.service;
 
-import org.thuanthanhtech.mymuseummanagement.dto.MediaDTO;
 import org.thuanthanhtech.mymuseummanagement.entity.Media;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 public interface MediaService {
@@ -12,5 +10,4 @@ public interface MediaService {
 
     List<Media> getAllMedia();
 
-    List<Media> getAllMediaByAlbumId(Long id);
 }

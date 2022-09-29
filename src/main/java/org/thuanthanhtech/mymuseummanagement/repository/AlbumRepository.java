@@ -23,6 +23,6 @@ public interface AlbumRepository extends JpaRepository<Album, Long> {
     @Query(value = "select * from album a where a.status = 1 and lower(concat(coalesce(a.name,''), coalesce(a.slug ,''))) like lower(:search)", nativeQuery = true)
     Page<Album> findBySearch(Pageable pageable, @Param("search") String search);
 
-    @Query(value = "select * from album a join media m on m.album_id = a.id where m.type = 0 and a.id = :id", nativeQuery = true)
-    List<Album> findByAlbumId(@Param("id") Long id);
+    @Query(value = "select * from album a join media m ON m.album_id = a.id where a.id = :id GROUP BY a.id", nativeQuery = true)
+    List<Album> getAllMediaByAlbumId(@Param("id") Long id);
 }

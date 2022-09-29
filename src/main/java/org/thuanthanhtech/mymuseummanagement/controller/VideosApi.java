@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.thuanthanhtech.mymuseummanagement.entity.Videos;
+import org.thuanthanhtech.mymuseummanagement.service.MediaService;
 import org.thuanthanhtech.mymuseummanagement.service.VideosService;
 
 import java.util.List;
@@ -15,6 +16,8 @@ import java.util.List;
 public class VideosApi {
 
     private final VideosService videosService;
+
+    private final MediaService mediaService;
 
     @PostMapping("/create")
     public ResponseEntity<?> createVideos(@RequestBody Videos video) {

@@ -5,11 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.thuanthanhtech.mymuseummanagement.dto.AlbumDTO;
 import org.thuanthanhtech.mymuseummanagement.entity.Album;
-import org.thuanthanhtech.mymuseummanagement.entity.Media;
 import org.thuanthanhtech.mymuseummanagement.service.AlbumService;
 
 import java.util.List;
@@ -46,7 +44,7 @@ public class AlbumApi {
 
     @GetMapping("/get-all-in-album")
     public ResponseEntity<List<Album>> getAllInAlbum(@RequestParam("id") Long id) {
-        return new ResponseEntity<>(albumService.getAllMediaByAlbumId(id), HttpStatus.OK);
+        return new ResponseEntity<>(albumService.getAllAlbumByMedia(id), HttpStatus.OK);
     }
 
 }
