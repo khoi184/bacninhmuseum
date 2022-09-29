@@ -24,5 +24,5 @@ public interface AlbumRepository extends JpaRepository<Album, Long> {
     Page<Album> findBySearch(Pageable pageable, @Param("search") String search);
 
     @Query(value = "select * from album a join media m ON m.album_id = a.id where a.id = :id GROUP BY a.id", nativeQuery = true)
-    List<Album> getAllMediaByAlbumId(@Param("id") Long id);
+    List<Album> getAllMediaByAlbum(@Param("id") Long id);
 }

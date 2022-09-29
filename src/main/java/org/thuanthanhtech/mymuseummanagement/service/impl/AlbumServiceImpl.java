@@ -26,7 +26,7 @@ public class AlbumServiceImpl implements AlbumService {
 
     private final MediaRepository mediaRepository;
 
-    public static final String  ALBUM_MEDIA = "Album";
+    public static final String ALBUM_MEDIA = "Album";
 
     @SneakyThrows
     @Override
@@ -90,7 +90,7 @@ public class AlbumServiceImpl implements AlbumService {
     @Override
     public Map<String, Object> deleteAlbum(Long id) {
         List<Album> albumList = albumRepository.findAllByIdAndStatus(id, Constants.STATUS_ACTIVE);
-        if(CollectionUtils.isEmpty(albumList)) {
+        if (CollectionUtils.isEmpty(albumList)) {
             throw new Exception("Can not found!");
         }
         for (Album album : albumList) {
@@ -103,7 +103,7 @@ public class AlbumServiceImpl implements AlbumService {
         if (CollectionUtils.isEmpty(mediaList)) {
             throw new Exception("Media not exists");
         }
-        for (Media media: mediaList) {
+        for (Media media : mediaList) {
             media.setStatus(Constants.STATUS_INACTIVE);
             media.setModifiedDate(new Date());
             mediaRepository.save(media);
@@ -127,6 +127,6 @@ public class AlbumServiceImpl implements AlbumService {
 
     @Override
     public List<Album> getAllAlbumByMedia(Long id) {
-        return albumRepository.getAllMediaByAlbumId(id);
+        return albumRepository.getAllMediaByAlbum(id);
     }
 }

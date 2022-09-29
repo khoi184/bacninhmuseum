@@ -21,7 +21,7 @@ import java.util.*;
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
 
-    public static final String  CATEGORY = "Category";
+    public static final String CATEGORY = "Category";
 
     private final CategoryDetailRepository categoryDetailRepository;
 
@@ -82,7 +82,7 @@ public class CategoryServiceImpl implements CategoryService {
         if (CollectionUtils.isEmpty(categoryDetailList)) {
             throw new MessageDescriptorFormatException("Category detail can not found!");
         }
-        for (CategoryDetail categoryDetail: categoryDetailList) {
+        for (CategoryDetail categoryDetail : categoryDetailList) {
             categoryDetail.setStatus(Constants.STATUS_INACTIVE);
             categoryDetailRepository.save(categoryDetail);
         }

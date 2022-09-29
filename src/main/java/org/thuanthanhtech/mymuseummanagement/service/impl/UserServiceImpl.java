@@ -14,7 +14,7 @@ import org.thuanthanhtech.mymuseummanagement.repository.UserRepository;
 import javax.transaction.Transactional;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;

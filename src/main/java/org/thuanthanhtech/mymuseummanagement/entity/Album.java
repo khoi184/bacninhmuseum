@@ -12,8 +12,8 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name="album")
-public class Album extends BaseTimeModel{
+@Table(name = "album")
+public class Album extends BaseTimeModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

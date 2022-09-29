@@ -17,7 +17,7 @@ import org.thuanthanhtech.mymuseummanagement.auth.LoginRequest;
 import org.thuanthanhtech.mymuseummanagement.auth.LoginResponse;
 import org.thuanthanhtech.mymuseummanagement.dto.SignUpDto;
 import org.thuanthanhtech.mymuseummanagement.config.JwtTokenProvider;
-import org.thuanthanhtech.mymuseummanagement.service.impl.UserService;
+import org.thuanthanhtech.mymuseummanagement.service.impl.UserServiceImpl;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -31,7 +31,7 @@ public class AuthApi {
     AuthenticationManager authenticationManager;
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
     @Autowired
     private JwtTokenProvider tokenProvider;
@@ -55,7 +55,7 @@ public class AuthApi {
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignUpDto signUpDto){
         try {
-            userService.registerUser(signUpDto);
+            userServiceImpl.registerUser(signUpDto);
         } catch (Exception e) {
             e.printStackTrace();
         }

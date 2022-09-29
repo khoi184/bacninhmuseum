@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.thuanthanhtech.mymuseummanagement.dto.Response;
-import org.thuanthanhtech.mymuseummanagement.service.impl.FileStorageService;
+import org.thuanthanhtech.mymuseummanagement.service.impl.FileStorageServiceImpl;
 
 @RestController
 public class FileUploadApi {
 
     @Autowired
-    private FileStorageService fileStorageService;
+    private FileStorageServiceImpl fileStorageServiceImpl;
 
     @PostMapping("/upload-file")
     public Response uploadFile(@RequestParam("file") MultipartFile file) {
-        String fileName = fileStorageService.storeFile(file);
+        String fileName = fileStorageServiceImpl.storeFile(file);
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/download-file/")

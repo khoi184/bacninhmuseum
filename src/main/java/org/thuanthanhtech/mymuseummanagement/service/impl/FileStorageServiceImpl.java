@@ -17,13 +17,13 @@ import org.springframework.web.multipart.MultipartFile;
 import org.thuanthanhtech.mymuseummanagement.config.FileStorageProperties;
 
 @Service
-public class FileStorageService {
+public class FileStorageServiceImpl {
 
     private final Path fileStorageLocation;
 
     @SneakyThrows
     @Autowired
-    public FileStorageService(FileStorageProperties fileStorageProperties) {
+    public FileStorageServiceImpl(FileStorageProperties fileStorageProperties) {
         this.fileStorageLocation = Paths.get(fileStorageProperties.getUploadDir())
                 .toAbsolutePath().normalize();
 

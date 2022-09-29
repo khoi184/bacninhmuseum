@@ -25,7 +25,7 @@ public class News extends BaseTimeModel {
 
     private Long categoryDetailId;
 
-    private  String author;
+    private String author;
 
     private Integer publish;
 
