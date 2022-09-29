@@ -23,7 +23,7 @@ public interface AlbumService {
 
     Page<Album> getAllAlbum(Pageable pageable, AlbumDTO albumDTO);
 
-//    List<Album> getAllMediaByAlbum();
+    List<Album> getAllMediaByAlbumId(Long id);
 
 
 }

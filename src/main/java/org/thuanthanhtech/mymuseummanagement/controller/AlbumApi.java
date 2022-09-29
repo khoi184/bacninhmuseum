@@ -43,10 +43,10 @@ public class AlbumApi {
                                                    @RequestBody AlbumDTO albumDTO) {
         return new ResponseEntity<>(albumService.getAllAlbum(pageable,albumDTO), HttpStatus.OK);
     }
-//
-//    @GetMapping("/get-all-in-album")
-//    public ResponseEntity<List<Album>> getAllInAlbum() {
-//        return new ResponseEntity<>(albumService.getAllMediaByAlbum(), HttpStatus.OK);
-//    }
+
+    @GetMapping("/get-all-in-album")
+    public ResponseEntity<List<Album>> getAllInAlbum(@RequestParam("id") Long id) {
+        return new ResponseEntity<>(albumService.getAllMediaByAlbumId(id), HttpStatus.OK);
+    }
 
 }
