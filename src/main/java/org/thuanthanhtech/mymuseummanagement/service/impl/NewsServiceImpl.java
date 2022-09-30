@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
@@ -20,7 +21,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class NewsServiceImpl implements NewsService {
+public class    NewsServiceImpl implements NewsService {
     private final NewsRepository  newsRepository;
 
     @Override
@@ -93,4 +94,11 @@ public class NewsServiceImpl implements NewsService {
     public List<News> getAllNewsByPublishAndType(Integer type) {
         return newsRepository.findAllByPublishAndType(type);
     }
+
+    @Override
+    public List<News> getAll() {
+        return newsRepository.findAll(Sort.by("name").ascending());
+    }
+
+
 }
