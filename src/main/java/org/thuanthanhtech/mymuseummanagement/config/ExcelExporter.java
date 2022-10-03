@@ -13,15 +13,20 @@ import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.thuanthanhtech.mymuseummanagement.entity.News;
+import org.thuanthanhtech.mymuseummanagement.repository.NewsRepository;
 
 @Service
 public class ExcelExporter {
     private final XSSFWorkbook workbook;
     private XSSFSheet sheet;
     private final List<News> listNews;
+
+    @Autowired
+    private NewsRepository newsRepository;
 
     public ExcelExporter(List<News> listNews) {
         this.listNews = listNews;
@@ -38,18 +43,17 @@ public class ExcelExporter {
                 News news = new News();
 
                 XSSFRow row = worksheet.getRow(index);
-                Long id = (long) row.getCell(0).getNumericCellValue();
 
-                news.setId(id);
                 news.setName(row.getCell(1).getStringCellValue());
                 news.setContent(row.getCell(2).getStringCellValue());
                 news.setSlug(row.getCell(3).getStringCellValue());
-                news.setAuthor(row.getCell(3).getStringCellValue());
-                news.setTitle(row.getCell(3).getStringCellValue());
+                news.setAuthor(row.getCell(4).getStringCellValue());
+                news.setTitle(row.getCell(5).getStringCellValue());
 
                 newsList.add(news);
             }
         }
+        newsRepository.saveAll(newsList);
         return newsList;
     }
 
