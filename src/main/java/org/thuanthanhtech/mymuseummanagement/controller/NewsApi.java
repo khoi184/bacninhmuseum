@@ -3,6 +3,7 @@ package org.thuanthanhtech.mymuseummanagement.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,8 @@ import org.thuanthanhtech.mymuseummanagement.dto.NewsDTO;
 import org.thuanthanhtech.mymuseummanagement.entity.News;
 import org.thuanthanhtech.mymuseummanagement.service.NewsService;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -45,5 +48,17 @@ public class NewsApi {
     @GetMapping("/get-all-by-publish")
     public ResponseEntity<List<News>> getAllNewsByPublish(@RequestBody NewsDTO newsDTO) {
         return new ResponseEntity<>(newsService.getAllNewsByPublishAndType(newsDTO.getType()),HttpStatus.OK);
+    }
+
+    @GetMapping("/get-all-by-date")
+    public ResponseEntity<List<News>> getAllNewsByDate(@RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,
+                                                       @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate) {
+        return new ResponseEntity<>(newsService.getAllByDate(startDate, endDate), HttpStatus.OK);
+    }
+
+    @GetMapping("/get-all-news-publish")
+    public ResponseEntity<Integer> countAllNewsByDate(@RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,
+                                                       @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate) {
+        return new ResponseEntity<>(newsService.countNewsActive(startDate, endDate), HttpStatus.OK);
     }
 }

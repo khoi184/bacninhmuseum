@@ -7,6 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.thuanthanhtech.mymuseummanagement.dto.NewsDTO;
 import org.thuanthanhtech.mymuseummanagement.entity.News;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -26,5 +29,10 @@ public interface NewsService {
     List<News> getAllNewsByPublishAndType(Integer type);
 
     List<News> getAll();
+
+    List<News> getAllByDate(Date startDate, Date endDate);
+
+//    Integer countNewsActive(Date startDateZ);
+    Integer countNewsActive(Date startDate, Date endDate);
 
 }

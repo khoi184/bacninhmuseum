@@ -14,6 +14,8 @@ import org.thuanthanhtech.mymuseummanagement.repository.NewsRepository;
 import org.thuanthanhtech.mymuseummanagement.service.NewsService;
 import org.thuanthanhtech.mymuseummanagement.utils.Constants;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -100,5 +102,13 @@ public class    NewsServiceImpl implements NewsService {
         return newsRepository.findAll(Sort.by("name").ascending());
     }
 
+    @Override
+    public List<News> getAllByDate(Date startDate, Date endDate) {
+        return newsRepository.findAllByDate(startDate, endDate);
+    }
 
+    @Override
+    public Integer countNewsActive(Date startDate, Date endDate) {
+        return newsRepository.countAllByDate(startDate, endDate);
+    }
 }
