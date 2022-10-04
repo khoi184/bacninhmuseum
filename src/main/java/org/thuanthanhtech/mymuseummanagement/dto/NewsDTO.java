@@ -1,10 +1,13 @@
 package org.thuanthanhtech.mymuseummanagement.dto;
 
-import lombok.Data;
+import lombok.*;
 
 import java.time.LocalDate;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class NewsDTO {
     private String search;
     private Integer type;

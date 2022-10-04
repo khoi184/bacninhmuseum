@@ -1,12 +1,11 @@
 package org.thuanthanhtech.mymuseummanagement.auth;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class LoginResponse {
     private String accessToken;
     private String tokenType = "Bearer";

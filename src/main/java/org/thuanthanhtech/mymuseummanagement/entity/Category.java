@@ -1,12 +1,15 @@
 package org.thuanthanhtech.mymuseummanagement.entity;
 
-import lombok.Data;
+import lombok.*;
 import org.apache.bval.constraints.NotEmpty;
 
 import javax.persistence.*;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name="category")
 public class Category extends  BaseTimeModel{
 

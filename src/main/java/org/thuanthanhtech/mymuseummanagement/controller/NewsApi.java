@@ -51,14 +51,26 @@ public class NewsApi {
     }
 
     @GetMapping("/get-all-by-date")
-    public ResponseEntity<List<News>> getAllNewsByDate(@RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,
-                                                       @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate) {
+    public ResponseEntity<List<News>> getAllNewsByDate(@RequestParam("startDate")
+                                                       @DateTimeFormat(pattern = "dd/MM/yyyy") Date startDate,
+                                                       @RequestParam("endDate")
+                                                       @DateTimeFormat(pattern = "dd/MM/yyyy") Date endDate) {
         return new ResponseEntity<>(newsService.getAllByDate(startDate, endDate), HttpStatus.OK);
     }
 
-    @GetMapping("/get-all-news-publish")
-    public ResponseEntity<Integer> countAllNewsByDate(@RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date startDate,
-                                                       @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date endDate) {
+    @GetMapping("/count-all-news-publish")
+    public ResponseEntity<Integer> countAllNewsActiveByDate(@RequestParam("startDate")
+                                                      @DateTimeFormat(pattern = "dd/MM/yyyy") Date startDate,
+                                                      @RequestParam("endDate")
+                                                      @DateTimeFormat(pattern = "dd/MM/yyyy") Date endDate) {
         return new ResponseEntity<>(newsService.countNewsActive(startDate, endDate), HttpStatus.OK);
+    }
+
+    @GetMapping("/count-all-news")
+    public ResponseEntity<Integer> countAllNewsByDate(@RequestParam("startDate")
+                                                      @DateTimeFormat(pattern = "dd/MM/yyyy") Date startDate,
+                                                      @RequestParam("endDate")
+                                                      @DateTimeFormat(pattern = "dd/MM/yyyy") Date endDate) {
+        return new ResponseEntity<>(newsService.countNews(startDate, endDate), HttpStatus.OK);
     }
 }

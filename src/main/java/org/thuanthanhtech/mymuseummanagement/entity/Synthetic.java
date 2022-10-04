@@ -1,11 +1,14 @@
 package org.thuanthanhtech.mymuseummanagement.entity;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "synthetic")
 public class Synthetic extends BaseTimeModel{
     @Id

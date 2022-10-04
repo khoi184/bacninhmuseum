@@ -1,7 +1,7 @@
 package org.thuanthanhtech.mymuseummanagement.service.impl;
 
-import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -15,16 +15,15 @@ import org.thuanthanhtech.mymuseummanagement.service.NewsService;
 import org.thuanthanhtech.mymuseummanagement.utils.Constants;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Date;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.util.*;
 
 @Service
-@RequiredArgsConstructor
 public class    NewsServiceImpl implements NewsService {
-    private final NewsRepository  newsRepository;
+
+    @Autowired
+    private NewsRepository  newsRepository;
 
     @Override
     @SneakyThrows
@@ -109,6 +108,11 @@ public class    NewsServiceImpl implements NewsService {
 
     @Override
     public Integer countNewsActive(Date startDate, Date endDate) {
-        return newsRepository.countAllByDate(startDate, endDate);
+        return newsRepository.countAllActiveByDate(startDate, endDate);
+    }
+
+    @Override
+    public Integer countNews(Date startDate, Date endDate) {
+        return newsRepository.countAllNews(startDate, endDate);
     }
 }

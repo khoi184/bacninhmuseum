@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.thuanthanhtech.mymuseummanagement.dto.MediaDTO;
 import org.thuanthanhtech.mymuseummanagement.entity.Media;
 import org.thuanthanhtech.mymuseummanagement.service.MediaService;
 
