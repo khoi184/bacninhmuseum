@@ -42,12 +42,12 @@ public class NewsApi {
 
     @GetMapping("/get-all")
     public ResponseEntity<Page<News>> getAllNews(Pageable pageable, NewsDTO newsDTO) {
-        return new ResponseEntity<>(newsService.getAllNews(pageable,newsDTO),HttpStatus.OK);
+        return new ResponseEntity<>(newsService.getAllNews(pageable, newsDTO), HttpStatus.OK);
     }
 
     @GetMapping("/get-all-by-publish")
     public ResponseEntity<List<News>> getAllNewsByPublish(@RequestBody NewsDTO newsDTO) {
-        return new ResponseEntity<>(newsService.getAllNewsByPublishAndType(newsDTO.getType()),HttpStatus.OK);
+        return new ResponseEntity<>(newsService.getAllNewsByPublishAndType(newsDTO.getType()), HttpStatus.OK);
     }
 
     @GetMapping("/get-all-by-date")
@@ -60,9 +60,9 @@ public class NewsApi {
 
     @GetMapping("/count-all-news-publish")
     public ResponseEntity<Integer> countAllNewsActiveByDate(@RequestParam("startDate")
-                                                      @DateTimeFormat(pattern = "dd/MM/yyyy") Date startDate,
-                                                      @RequestParam("endDate")
-                                                      @DateTimeFormat(pattern = "dd/MM/yyyy") Date endDate) {
+                                                            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) String startDate,
+                                                            @RequestParam("endDate")
+                                                            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) String endDate) {
         return new ResponseEntity<>(newsService.countNewsActive(startDate, endDate), HttpStatus.OK);
     }
 

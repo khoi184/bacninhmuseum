@@ -14,6 +14,7 @@ import org.thuanthanhtech.mymuseummanagement.service.CategoryService;
 import org.thuanthanhtech.mymuseummanagement.utils.Constants;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.*;
 
 
@@ -75,7 +76,7 @@ public class CategoryServiceImpl implements CategoryService {
         }
         for (Category category : categories) {
             category.setStatus(Constants.STATUS_INACTIVE);
-            category.setModifiedDate(new Date());
+            category.setModifiedDate(LocalDate.now());
             categoryRepository.save(category);
         }
 

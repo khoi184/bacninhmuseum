@@ -1,6 +1,7 @@
 package org.thuanthanhtech.mymuseummanagement.service.impl;
 
 import lombok.SneakyThrows;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -57,7 +58,7 @@ public class    NewsServiceImpl implements NewsService {
             ne.setSlug(news.getSlug());
             ne.setUpdateBy(news.getUpdateBy());
             ne.setPublish(news.getPublish());
-            ne.setModifiedDate(new Date());
+            ne.setModifiedDate(LocalDate.now());
             news.setStatus(Constants.STATUS_ACTIVE);
 
             newsRepository.save(ne);
@@ -74,7 +75,7 @@ public class    NewsServiceImpl implements NewsService {
             throw new NoSuchElementException("Can not found!");
         }
         for (News news: newsList) {
-            news.setCreatDate(new Date());
+            news.setCreatDate(LocalDate.now());
             news.setStatus(Constants.STATUS_INACTIVE);
             newsRepository.save(news);
         }
@@ -107,8 +108,14 @@ public class    NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public Integer countNewsActive(Date startDate, Date endDate) {
-        return newsRepository.countAllActiveByDate(startDate, endDate);
+    public Integer countNewsActive(String startDate, String endDate) {
+//        "[dd/MM/yyyy][yyyy/MM/dd][yyyy-MM-dd][dd-MM-yyyy][dd:MM:yyyy]"
+        DateTimeFormatterBuilder formatter = new DateTimeFormatterBuilder()
+                .append(DateTimeFormatter.ofPattern("" + "[dd/MM/yyyy]" + "[yyyy-MM-dd]" + "[dd:MM:yyyy]" + "[yyyy/dd/MM]"));
+        DateTimeFormatter dateTimeFormatter = formatter.toFormatter();
+        LocalDate date = LocalDate.from(dateTimeFormatter.parse(startDate));
+        LocalDate date2 = LocalDate.from(dateTimeFormatter.parse(endDate));
+        return newsRepository.countAllActiveByDate(date, date2);
     }
 
     @Override

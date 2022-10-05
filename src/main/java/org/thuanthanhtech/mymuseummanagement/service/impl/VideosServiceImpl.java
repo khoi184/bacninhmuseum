@@ -12,6 +12,7 @@ import org.thuanthanhtech.mymuseummanagement.service.VideosService;
 import org.thuanthanhtech.mymuseummanagement.utils.Constants;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
@@ -73,7 +74,7 @@ public class VideosServiceImpl implements VideosService {
         }
         for (Videos video : videosList) {
             video.setStatus(Constants.STATUS_INACTIVE);
-            video.setCreatDate(new Date());
+            video.setCreatDate(LocalDate.now());
             videosRepository.save(video);
         }
         List<Media> mediaList = mediaRepository.findByVideoIdAndStatus();

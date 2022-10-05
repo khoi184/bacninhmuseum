@@ -16,6 +16,7 @@ import org.thuanthanhtech.mymuseummanagement.repository.MediaRepository;
 import org.thuanthanhtech.mymuseummanagement.service.AlbumService;
 import org.thuanthanhtech.mymuseummanagement.utils.Constants;
 
+import java.time.LocalDate;
 import java.util.*;
 
 @Service
@@ -76,7 +77,7 @@ public class AlbumServiceImpl implements AlbumService {
         }
         for (Album album : albumList) {
             album.setStatus(Constants.STATUS_INACTIVE);
-            album.setCreatDate(new Date());
+            album.setCreatDate(LocalDate.now());
             albumRepository.save(album);
         }
 
@@ -86,7 +87,7 @@ public class AlbumServiceImpl implements AlbumService {
         }
         for (Media media: mediaList) {
             media.setStatus(Constants.STATUS_INACTIVE);
-            media.setCreatDate(new Date());
+            media.setCreatDate(LocalDate.now());
             mediaRepository.save(media);
         }
 

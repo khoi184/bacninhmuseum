@@ -7,7 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
-import java.util.Date;
+import java.time.LocalDate;
 
 @MappedSuperclass
 @Getter
@@ -18,11 +18,11 @@ public class BaseTimeModel {
 
     @CreationTimestamp
     @Column(name = "create_Time")
-    private Date creatDate;
+    private LocalDate creatDate;
 
     @UpdateTimestamp
     @Column(name = "modified_date")
-    private Date modifiedDate;
+    private LocalDate modifiedDate;
 
     @Column(name = "update_by")
     private String UpdateBy;

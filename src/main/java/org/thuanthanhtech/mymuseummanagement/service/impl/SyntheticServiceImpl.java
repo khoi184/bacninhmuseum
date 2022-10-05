@@ -14,6 +14,7 @@ import org.thuanthanhtech.mymuseummanagement.repository.SyntheticRepository;
 import org.thuanthanhtech.mymuseummanagement.service.SyntheticService;
 import org.thuanthanhtech.mymuseummanagement.utils.Constants;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -73,7 +74,7 @@ public class SyntheticServiceImpl implements SyntheticService {
             throw new NoSuchElementException("Can not found!");
         }
         for (Synthetic synthetic : syntheticList) {
-            synthetic.setCreatDate(new Date());
+            synthetic.setCreatDate(LocalDate.now());
             synthetic.setStatus(Constants.STATUS_INACTIVE);
             syntheticRepository.save(synthetic);
         }

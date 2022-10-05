@@ -29,7 +29,7 @@ public interface NewsRepository extends JpaRepository<News, Long> {
     List<News> findAllByDate(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
     @Query(value = "SELECT count(n.name)  FROM News n WHERE n.publish = 1 and n.status = 1 and n.creatDate BETWEEN :startDate AND :endDate")
-    Integer countAllActiveByDate(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+    Integer countAllActiveByDate(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
     @Query(value = "SELECT count(n.name) FROM News n WHERE n.status = 1 and n.creatDate BETWEEN :startDate AND :endDate")
     Integer countAllNews(@Param("startDate") Date startDate, @Param("endDate") Date endDate);

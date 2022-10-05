@@ -12,6 +12,7 @@ import org.thuanthanhtech.mymuseummanagement.service.MediaService;
 import org.thuanthanhtech.mymuseummanagement.utils.Constants;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -62,7 +63,7 @@ public class MediaServiceImpl implements MediaService {
         }
         for (Media medias : media) {
             medias.setStatus(Constants.STATUS_INACTIVE);
-            medias.setModifiedDate(new Date());
+            medias.setModifiedDate(LocalDate.now());
             mediaRepository.save(medias);
         }
     }
