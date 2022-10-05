@@ -29,10 +29,10 @@ public interface NewsService {
 
     List<News> getAll();
 
-    List<News> getAllByDate(Date startDate, Date endDate);
+    List<News> getAllByDate(String startDate, String endDate);
 
     Integer countNewsActive(String startDate, String endDate);
 
-    Integer countNews(Date startDate, Date endDate);
+    Integer countNews(String startDate, String endDate);
 
 }

@@ -21,10 +21,10 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.util.*;
 
 @Service
-public class    NewsServiceImpl implements NewsService {
+public class NewsServiceImpl implements NewsService {
 
     @Autowired
-    private NewsRepository  newsRepository;
+    private NewsRepository newsRepository;
 
     @Override
     @SneakyThrows
@@ -74,7 +74,7 @@ public class    NewsServiceImpl implements NewsService {
         if (CollectionUtils.isEmpty(newsList)) {
             throw new NoSuchElementException("Can not found!");
         }
-        for (News news: newsList) {
+        for (News news : newsList) {
             news.setCreatDate(LocalDate.now());
             news.setStatus(Constants.STATUS_INACTIVE);
             newsRepository.save(news);
@@ -103,15 +103,20 @@ public class    NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public List<News> getAllByDate(Date startDate, Date endDate) {
-        return newsRepository.findAllByDate(startDate, endDate);
+    public List<News> getAllByDate(String startDate, String endDate) {
+        DateTimeFormatterBuilder formatter = new DateTimeFormatterBuilder()
+                .append(DateTimeFormatter.ofPattern("" + "[dd/MM/yyyy]" + "[yyyy-MM-dd]" + "[dd:MM:yyyy]" + "[yyyy/dd/MM]" + "[dd-MM-yyyy]"));
+        DateTimeFormatter dateTimeFormatter = formatter.toFormatter();
+        LocalDate date = LocalDate.from(dateTimeFormatter.parse(startDate));
+        LocalDate date2 = LocalDate.from(dateTimeFormatter.parse(endDate));
+        return newsRepository.findAllByDate(date, date2);
     }
 
     @Override
     public Integer countNewsActive(String startDate, String endDate) {
 //        "[dd/MM/yyyy][yyyy/MM/dd][yyyy-MM-dd][dd-MM-yyyy][dd:MM:yyyy]"
         DateTimeFormatterBuilder formatter = new DateTimeFormatterBuilder()
-                .append(DateTimeFormatter.ofPattern("" + "[dd/MM/yyyy]" + "[yyyy-MM-dd]" + "[dd:MM:yyyy]" + "[yyyy/dd/MM]"));
+                .append(DateTimeFormatter.ofPattern("" + "[dd/MM/yyyy]" + "[yyyy-MM-dd]" + "[dd:MM:yyyy]" + "[yyyy/dd/MM]" + "[dd-MM-yyyy]"));
         DateTimeFormatter dateTimeFormatter = formatter.toFormatter();
         LocalDate date = LocalDate.from(dateTimeFormatter.parse(startDate));
         LocalDate date2 = LocalDate.from(dateTimeFormatter.parse(endDate));
@@ -119,7 +124,12 @@ public class    NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public Integer countNews(Date startDate, Date endDate) {
-        return newsRepository.countAllNews(startDate, endDate);
+    public Integer countNews(String startDate, String endDate) {
+        DateTimeFormatterBuilder formatter = new DateTimeFormatterBuilder()
+                .append(DateTimeFormatter.ofPattern("" + "[dd/MM/yyyy]" + "[yyyy-MM-dd]" + "[dd:MM:yyyy]" + "[yyyy/dd/MM]" + "[dd-MM-yyyy]"));
+        DateTimeFormatter dateTimeFormatter = formatter.toFormatter();
+        LocalDate date = LocalDate.from(dateTimeFormatter.parse(startDate));
+        LocalDate date2 = LocalDate.from(dateTimeFormatter.parse(endDate));
+        return newsRepository.countAllNews(date, date2);
     }
 }

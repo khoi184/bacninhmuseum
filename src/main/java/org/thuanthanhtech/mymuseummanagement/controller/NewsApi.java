@@ -52,9 +52,9 @@ public class NewsApi {
 
     @GetMapping("/get-all-by-date")
     public ResponseEntity<List<News>> getAllNewsByDate(@RequestParam("startDate")
-                                                       @DateTimeFormat(pattern = "dd/MM/yyyy") Date startDate,
+                                                       @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) String startDate,
                                                        @RequestParam("endDate")
-                                                       @DateTimeFormat(pattern = "dd/MM/yyyy") Date endDate) {
+                                                       @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) String endDate) {
         return new ResponseEntity<>(newsService.getAllByDate(startDate, endDate), HttpStatus.OK);
     }
 
@@ -68,9 +68,9 @@ public class NewsApi {
 
     @GetMapping("/count-all-news")
     public ResponseEntity<Integer> countAllNewsByDate(@RequestParam("startDate")
-                                                      @DateTimeFormat(pattern = "dd/MM/yyyy") Date startDate,
+                                                      @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) String startDate,
                                                       @RequestParam("endDate")
-                                                      @DateTimeFormat(pattern = "dd/MM/yyyy") Date endDate) {
+                                                      @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) String endDate) {
         return new ResponseEntity<>(newsService.countNews(startDate, endDate), HttpStatus.OK);
     }
 }
