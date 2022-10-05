@@ -1,4 +1,5 @@
-package org.thuanthanhtech.mymuseummanagement.config;
+package org.thuanthanhtech.mymuseummanagement.service.impl;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ import org.thuanthanhtech.mymuseummanagement.entity.News;
 import org.thuanthanhtech.mymuseummanagement.repository.NewsRepository;
 
 @Service
-public class ExcelExporter {
+public class ExcelExImServiceImpl {
     private final XSSFWorkbook workbook;
     private XSSFSheet sheet;
     private final List<News> listNews;
@@ -28,7 +29,7 @@ public class ExcelExporter {
     @Autowired
     private NewsRepository newsRepository;
 
-    public ExcelExporter(List<News> listNews) {
+    public ExcelExImServiceImpl(List<News> listNews) {
         this.listNews = listNews;
         workbook = new XSSFWorkbook();
     }
@@ -84,7 +85,7 @@ public class ExcelExporter {
             cell.setCellValue((Integer) value);
         } else if (value instanceof Boolean) {
             cell.setCellValue((Boolean) value);
-        }else {
+        } else {
             cell.setCellValue((String) value);
         }
         cell.setCellStyle(style);
@@ -121,6 +122,5 @@ public class ExcelExporter {
         workbook.close();
 
         outputStream.close();
-
     }
 }
