@@ -24,7 +24,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class SyntheticServiceImpl implements SyntheticService {
 
-
     private final SyntheticRepository syntheticRepository;
 
     @SneakyThrows
