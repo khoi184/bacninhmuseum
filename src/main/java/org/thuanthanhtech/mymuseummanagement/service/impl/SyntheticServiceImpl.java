@@ -24,7 +24,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class SyntheticServiceImpl implements SyntheticService {
 
-
     private final SyntheticRepository syntheticRepository;
 
     @SneakyThrows
@@ -32,7 +31,6 @@ public class SyntheticServiceImpl implements SyntheticService {
     @Transactional
     public Synthetic createSynthetic(Synthetic synthetic) {
         Synthetic synthetics = new Synthetic();
-
         synthetics.setType(synthetic.getType());
         synthetics.setName(synthetic.getName());
         synthetics.setTitle(synthetic.getTitle());
@@ -40,7 +38,6 @@ public class SyntheticServiceImpl implements SyntheticService {
         synthetics.setUpdateBy(synthetic.getUpdateBy());
         synthetics.setStatus(Constants.STATUS_ACTIVE);
         syntheticRepository.save(synthetics);
-
         return synthetic;
     }
 
@@ -51,7 +48,6 @@ public class SyntheticServiceImpl implements SyntheticService {
         Optional<Synthetic> optionalSynthetic = syntheticRepository.findById(id);
         if (optionalSynthetic.isPresent()) {
             Synthetic sy = optionalSynthetic.get();
-
             sy.setType(synthetic.getType());
             sy.setName(synthetic.getName());
             sy.setTitle(synthetic.getTitle());
