@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import org.thuanthanhtech.mymuseummanagement.entity.News;
 
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -26,12 +25,12 @@ public interface NewsRepository extends JpaRepository<News, Long> {
     Page<News> findAllBySearch(Pageable pageable, @Param("search") String search);
 
     @Query(value = "SELECT * FROM news n WHERE n.create_time BETWEEN :startDate AND :endDate", nativeQuery = true)
-    List<News> findAllByDate(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+    List<News> findAllByDate(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
     @Query(value = "SELECT count(n.name)  FROM News n WHERE n.publish = 1 and n.status = 1 and n.creatDate BETWEEN :startDate AND :endDate")
     Integer countAllActiveByDate(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
     @Query(value = "SELECT count(n.name) FROM News n WHERE n.status = 1 and n.creatDate BETWEEN :startDate AND :endDate")
-    Integer countAllNews(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+    Integer countAllNews(@Param("startDate") LocalDate startDate, @Param("endDate") LocalDate endDate);
 
 }

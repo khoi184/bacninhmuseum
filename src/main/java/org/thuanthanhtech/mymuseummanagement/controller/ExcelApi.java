@@ -1,14 +1,12 @@
 package org.thuanthanhtech.mymuseummanagement.controller;
 
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.thuanthanhtech.mymuseummanagement.config.ExcelExporter;
+import org.thuanthanhtech.mymuseummanagement.service.impl.ExcelExImServiceImpl;
 import org.thuanthanhtech.mymuseummanagement.entity.News;
 import org.thuanthanhtech.mymuseummanagement.service.NewsService;
 
@@ -27,11 +25,11 @@ public class ExcelApi {
     private NewsService newsService;
 
     @Autowired
-    private ExcelExporter excelExporter;
+    private ExcelExImServiceImpl excelExImServiceImpl;
 
     @RequestMapping(value = "/import-excel", method = RequestMethod.POST)
     public ResponseEntity<List<News>> importExcelFile(@RequestParam("file") MultipartFile files) throws IOException {
-        List<News> newsList = excelExporter.importNewsToExcel(files);
+        List<News> newsList = excelExImServiceImpl.importNewsToExcel(files);
         return new ResponseEntity<List<News>>(newsList, HttpStatus.OK);
     }
 
@@ -48,8 +46,8 @@ public class ExcelApi {
 
         List<News> listNews = newsService.getAll();
 
-        ExcelExporter excelExporter = new ExcelExporter(listNews);
+        ExcelExImServiceImpl excelExImServiceImpl = new ExcelExImServiceImpl(listNews);
 
-        excelExporter.export(response);
+        excelExImServiceImpl.export(response);
     }
 }
