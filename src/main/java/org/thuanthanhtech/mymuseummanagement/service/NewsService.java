@@ -24,4 +24,6 @@ public interface NewsService {
     Page<News> getAllNews(Pageable pageable, NewsDTO newsDTO);
 
     List<News> getAllNewsByPublishAndType(Integer type);
+
+    List<News> getAll();
 }

@@ -91,4 +91,9 @@ public class NewsServiceImpl implements NewsService {
     public List<News> getAllNewsByPublishAndType(Integer type) {
         return newsRepository.findAllByPublishAndType(type);
     }
+
+    @Override
+    public List<News> getAll() {
+        return newsRepository.findAll();
+    }
 }

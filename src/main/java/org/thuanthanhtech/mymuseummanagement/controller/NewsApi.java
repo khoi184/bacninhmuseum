@@ -37,9 +37,14 @@ public class NewsApi {
         return new ResponseEntity<>("Delete successful!", HttpStatus.OK);
     }
 
-    @GetMapping("/get-all")
+    @GetMapping("/get-all-by-search")
     public ResponseEntity<Page<News>> getAllNews(Pageable pageable, @RequestBody NewsDTO newsDTO) {
         return new ResponseEntity<>(newsService.getAllNews(pageable,newsDTO),HttpStatus.OK);
+    }
+
+    @GetMapping("get-all")
+    public ResponseEntity<?> getAll() {
+        return new ResponseEntity<>(newsService.getAll(), HttpStatus.OK);
     }
 
     @GetMapping("/get-all-by-publish")
