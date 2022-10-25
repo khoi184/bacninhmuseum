@@ -51,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable(); // Ngăn chặn request từ một domain khác
         http.authorizeRequests()
                 .antMatchers("/","/api/login","/api/signup", "/news/get-all-by-publish").permitAll()
-                .anyRequest().fullyAuthenticated()
+                .anyRequest().permitAll()
                 .and()
                 .logout()
                 .logoutUrl("/logout")

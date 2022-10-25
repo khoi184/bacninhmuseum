@@ -43,7 +43,7 @@ public class NewsApi {
     }
 
     @GetMapping("/get-all-by-publish")
-    public ResponseEntity<List<News>> getAllNewsByPublish(@RequestBody NewsDTO newsDTO) {
-        return new ResponseEntity<>(newsService.getAllNewsByPublishAndType(newsDTO.getType()),HttpStatus.OK);
+    public ResponseEntity<List<News>> getAllNewsByPublish(@RequestParam("type") Integer type) {
+        return new ResponseEntity<>(newsService.getAllNewsByPublishAndType(type),HttpStatus.OK);
     }
 }

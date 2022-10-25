@@ -23,8 +23,7 @@ public class DataSeeder implements ApplicationListener<ContextRefreshedEvent> {
     private RoleRepository roleRepository;
 
     public BCryptPasswordEncoder passwordEncoder() {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        return bCryptPasswordEncoder;
+        return new BCryptPasswordEncoder();
     }
     @Override
     public void onApplicationEvent(ContextRefreshedEvent arg0) {
