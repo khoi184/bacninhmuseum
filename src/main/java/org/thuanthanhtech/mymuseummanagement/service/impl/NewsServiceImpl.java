@@ -21,7 +21,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class NewsServiceImpl implements NewsService {
-    private final NewsRepository  newsRepository;
+    private final NewsRepository newsRepository;
 
     @Override
     @SneakyThrows
@@ -36,7 +36,6 @@ public class NewsServiceImpl implements NewsService {
         news.setPublish(Constants.PUBLISH_ACTIVE);
         news.setStatus(Constants.STATUS_ACTIVE);
         newsRepository.save(news);
-
         return news;
     }
 
@@ -46,7 +45,6 @@ public class NewsServiceImpl implements NewsService {
         Optional<News> optional = newsRepository.findById(id);
         if (optional.isPresent()) {
             News ne = optional.get();
-
             ne.setType(news.getType());
             ne.setName(news.getName());
             ne.setTitle(news.getTitle());
@@ -57,8 +55,8 @@ public class NewsServiceImpl implements NewsService {
             ne.setPublish(news.getPublish());
             ne.setModifiedDate(new Date());
             news.setStatus(Constants.STATUS_ACTIVE);
-
             newsRepository.save(ne);
+
         } else {
             throw new Exception("Can not found by id: " + id);
         }
@@ -71,7 +69,7 @@ public class NewsServiceImpl implements NewsService {
         if (CollectionUtils.isEmpty(newsList)) {
             throw new NoSuchElementException("Can not found!");
         }
-        for (News news: newsList) {
+        for (News news : newsList) {
             news.setCreatDate(new Date());
             news.setStatus(Constants.STATUS_INACTIVE);
             newsRepository.save(news);
