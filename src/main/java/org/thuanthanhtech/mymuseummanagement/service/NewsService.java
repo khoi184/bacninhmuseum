@@ -26,4 +26,6 @@ public interface NewsService {
     List<News> getAllNewsByPublishAndType(Integer type);
 
     List<News> getAll();
+
+    News getById(Long id) throws Exception;
 }

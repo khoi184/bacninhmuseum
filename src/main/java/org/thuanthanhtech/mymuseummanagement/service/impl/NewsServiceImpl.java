@@ -96,4 +96,14 @@ public class NewsServiceImpl implements NewsService {
     public List<News> getAll() {
         return newsRepository.findAll();
     }
+
+    @Override
+    public News getById(Long id) throws Exception {
+        Optional<News> optional = newsRepository.findById(id);
+        if (optional.isPresent()) {
+            return optional.get();
+        } else {
+            throw new Exception("News can not found!");
+        }
+    }
 }

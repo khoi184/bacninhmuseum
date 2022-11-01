@@ -47,6 +47,15 @@ public class NewsApi {
         return new ResponseEntity<>(newsService.getAll(), HttpStatus.OK);
     }
 
+    @GetMapping("get-by-id/{id}")
+    public ResponseEntity<?> getById(@PathVariable("id") Long id) {
+        try {
+            return new ResponseEntity<>(newsService.getById(id), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Can not found by id: " + id, HttpStatus.NOT_FOUND);
+        }
+    }
+
     @GetMapping("/get-all-by-publish")
     public ResponseEntity<List<News>> getAllNewsByPublish(@RequestParam("type") Integer type) {
         return new ResponseEntity<>(newsService.getAllNewsByPublishAndType(type),HttpStatus.OK);
