@@ -99,7 +99,7 @@ public class AlbumServiceImpl implements AlbumService {
             albumRepository.save(album);
         }
 
-        List<Media> mediaList = mediaRepository.findByAlbumIdAndStatus();
+        List<Media> mediaList = mediaRepository.findByAlbumIdAndStatus(id);
         if (CollectionUtils.isEmpty(mediaList)) {
             throw new Exception("Media not exists");
         }
