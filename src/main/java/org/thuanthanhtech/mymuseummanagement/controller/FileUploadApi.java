@@ -34,9 +34,8 @@ public class FileUploadApi {
 
     @PostMapping("/upload-multiple-files")
     public List < Response > uploadMultipleFiles(@RequestParam("files") MultipartFile[] files) {
-        return Arrays.asList(files)
-                .stream()
-                .map(file -> uploadFile(file))
+        return Arrays.stream(files)
+                .map(this::uploadFile)
                 .collect(Collectors.toList());
     }
 }
